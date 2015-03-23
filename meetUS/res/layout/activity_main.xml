@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1.0"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    
+    <ListView
+        android:id="@+id/lvListe"
+        android:layout_width="fill_parent"
+        android:layout_height="300dip"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:background="#000000"
+        android:listSelector="@drawable/list_selector" >
+    </ListView>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_weight="0.07" />
+
+      <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="2dp"
+          android:layout_marginRight="2dp"
+          android:layout_weight="0.70"
+          android:background="#FFFFFF"
+          android:orientation="horizontal"
+          android:weightSum="1.0" >
+
+       
+        
+        <Button
+            android:id="@+id/ouSortir"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:hint="Quand sortir?" />
+
+        <Button
+            android:id="@+id/dteSortie"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:layout_height="50dp"
+            android:hint="Quand sortir?" />
+        
+        <ImageView
+            android:id="@+id/test"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:contentDescription="@string/img_profil"
+            />
+
+    </LinearLayout> 
+
+</LinearLayout>
