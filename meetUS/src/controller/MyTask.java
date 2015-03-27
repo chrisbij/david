@@ -48,8 +48,8 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 			JSONArray jArray = co.getObjFromUrlTest(url, "BIJOU", "Chrislet");
 			for(int i=0;i<jArray.length();i++){
 				json_data = jArray.getJSONObject(i);
-				nom1 = json_data.getString("nom");
-				prenom1 = json_data.getString("prenom");
+				nom1 = json_data.getString("villeParty");
+				prenom1 = json_data.getString("titreParty");
 				srcPic = json_data.getString("img");
 					
 					is = (InputStream) new URL(srcPic).getContent();

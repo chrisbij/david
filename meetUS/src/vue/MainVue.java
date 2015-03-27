@@ -46,7 +46,7 @@ public class MainVue extends MainActivity {
 		
 		datePick = (TextView)findViewById(R.id.dteSortie);
 		datePick.setOnClickListener(choixJour);
-		test = (ImageView)findViewById(R.id.test);
+		test = (ImageView)findViewById(R.id.objet);
 		list = (ListView)findViewById(R.id.lvListe);
 			
 		picProfil = (ImageView)findViewById(R.id.list_image);
