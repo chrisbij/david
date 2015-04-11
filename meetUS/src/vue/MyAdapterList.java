@@ -20,14 +20,17 @@ import android.widget.TextView;
 public class MyAdapterList extends BaseAdapter{
 	
 	Context context;
+	ArrayList<String> titrePartyResult = new ArrayList<String>();
 	ArrayList<String> result = new ArrayList<String>();
 	ArrayList<Bitmap> image = new ArrayList<Bitmap>();
 	TextView user;
+	TextView partyTitre;
 	ImageView img;
 	
 	
 	
-	public MyAdapterList(Context a, ArrayList<String> descList, ArrayList<Bitmap> imgList){
+	public MyAdapterList(Context a, ArrayList<String> titrePartyList, ArrayList<String> descList, ArrayList<Bitmap> imgList){
+		titrePartyResult = titrePartyList;
 		result = descList;
 		context = a;
 		image = imgList;
@@ -65,10 +68,12 @@ public class MyAdapterList extends BaseAdapter{
 		row = inflater.inflate(R.layout.list_row, parent, false);
 		
 		user = (TextView) row.findViewById(R.id.objet);
+		partyTitre = (TextView) row.findViewById(R.id.textView1);
 		Log.e("test", "bonjour");
 		img = (ImageView) row.findViewById(R.id.list_image);
 		
 		user.setText(result.get(position));
+		partyTitre.setText(titrePartyResult.get(position));
 		img.setImageBitmap(image.get(position));
 		
 		return row;

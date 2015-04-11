@@ -21,8 +21,8 @@ import android.widget.Toast;
 public class MyTask extends AsyncTask<String, Void, MyResult> {
 	
 	Context context;
-	public String prenom1;
-	public String nom1;
+	public String partyTitre;
+	public String partyLieu;
 	Connexion co = new Connexion();
 	public ListView liste; 
 	public MyResult toto;
@@ -32,6 +32,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	public String srcPic;
 	public String url = "http://meetus.noip.me/meetus/connexion.php";
 
+	public ArrayList<String> titreParty = new ArrayList<String>();
 	public ArrayList<String> text = new ArrayList<String>();
 	public ArrayList<Bitmap> image = new ArrayList<Bitmap>() ;
 	
@@ -48,13 +49,14 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 			JSONArray jArray = co.getObjFromUrlTest(url, "BIJOU", "Chrislet");
 			for(int i=0;i<jArray.length();i++){
 				json_data = jArray.getJSONObject(i);
-				nom1 = json_data.getString("villeParty");
-				prenom1 = json_data.getString("titreParty");
-				srcPic = json_data.getString("img");
+				partyTitre = json_data.getString("PARTY_TITRE");
+				partyLieu = json_data.getString("VILLE_LIEU");
+				srcPic = "http://meetus.noip.me/meetus/media/images/image1.png";
 					
 					is = (InputStream) new URL(srcPic).getContent();
 					bm = BitmapFactory.decodeStream(is);
-					text.add("Bonjour "+nom1+" "+prenom1);
+					titreParty.add(""+partyTitre);
+					text.add(""+partyLieu);
 					image.add(bm);
 				 	
 					toto = something();
@@ -71,7 +73,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	protected void onPostExecute(MyResult result){	
 		
 		
-		MyAdapterList adapter = new MyAdapterList(context, toto.getText(), toto.getImages());
+		MyAdapterList adapter = new MyAdapterList(context,toto.getPartyTitre(), toto.getText(), toto.getImages());
 		
 
 		Log.e("eco", ""+ liste.getId());
@@ -87,10 +89,11 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	
 	
 	public MyResult something(){
+		ArrayList<String> titrePartyy = titreParty;
 		ArrayList<String> textt = text;
 		ArrayList<Bitmap> imagee = image;
 		
-		return new MyResult(textt, imagee);
+		return new MyResult(titrePartyy ,textt, imagee);
 	}
 
 }
