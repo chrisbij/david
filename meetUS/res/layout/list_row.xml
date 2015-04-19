@@ -20,20 +20,28 @@
             android:contentDescription="@string/img_profil" />
         
     </LinearLayout>
-    
-    <TextView 
-        android:id="@+id/objet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-        />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/objet"
+        android:layout_below="@+id/objet"
+        android:hint=" " />
+
+    <TextView
+        android:id="@+id/objet"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1" />
 
 </RelativeLayout>

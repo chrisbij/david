@@ -21,17 +21,20 @@ public class MyAdapterList extends BaseAdapter{
 	
 	Context context;
 	ArrayList<String> titrePartyResult = new ArrayList<String>();
-	ArrayList<String> result = new ArrayList<String>();
+	ArrayList<String> partyLieuResult = new ArrayList<String>();
+	ArrayList<String> partyDateResult = new ArrayList<String>();
 	ArrayList<Bitmap> image = new ArrayList<Bitmap>();
-	TextView user;
+	TextView lieuParty;
 	TextView partyTitre;
+	TextView dateParty;
 	ImageView img;
 	
 	
 	
-	public MyAdapterList(Context a, ArrayList<String> titrePartyList, ArrayList<String> descList, ArrayList<Bitmap> imgList){
+	public MyAdapterList(Context a, ArrayList<String> titrePartyList, ArrayList<String> partyLieu, ArrayList<String> partyDate, ArrayList<Bitmap> imgList){
 		titrePartyResult = titrePartyList;
-		result = descList;
+		partyLieuResult = partyLieu;
+		partyDateResult = partyDate;
 		context = a;
 		image = imgList;
 	
@@ -40,7 +43,7 @@ public class MyAdapterList extends BaseAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return result.size();
+		return partyLieuResult.size();
 	}
 
 	@Override
@@ -67,13 +70,15 @@ public class MyAdapterList extends BaseAdapter{
 		
 		row = inflater.inflate(R.layout.list_row, parent, false);
 		
-		user = (TextView) row.findViewById(R.id.objet);
 		partyTitre = (TextView) row.findViewById(R.id.textView1);
+		lieuParty = (TextView) row.findViewById(R.id.objet);
+		dateParty = (TextView) row.findViewById(R.id.TextView01);
 		Log.e("test", "bonjour");
 		img = (ImageView) row.findViewById(R.id.list_image);
 		
-		user.setText(result.get(position));
+		lieuParty.setText("à "+partyLieuResult.get(position));
 		partyTitre.setText(titrePartyResult.get(position));
+		dateParty.setText("Le "+partyDateResult);
 		img.setImageBitmap(image.get(position));
 		
 		return row;

@@ -7,17 +7,19 @@ import android.graphics.Bitmap;
 public final class MyResult {
 	
 	private ArrayList<String> partyTitre;
-	private ArrayList<String> texte;
+	private ArrayList<String> partyLieu;
+	private ArrayList<String> partyDate;
 	private ArrayList<Bitmap> images;
 	
-	public MyResult(ArrayList<String> partyTitre, ArrayList<String> texte, ArrayList<Bitmap> images){
+	public MyResult(ArrayList<String> partyTitre, ArrayList<String> partyLieu, ArrayList<String> partyDate, ArrayList<Bitmap> images){
 		this.partyTitre = partyTitre;
 		this.images = images;
-		this.texte = texte;
+		this.partyLieu = partyLieu;
+		this.partyDate = partyDate;
 	}
 	
-	public ArrayList<String> getText(){
-		return texte;
+	public ArrayList<String> getPartyLieu(){
+		return partyLieu;
 	}
 	
 	public ArrayList<Bitmap> getImages(){
@@ -28,4 +30,7 @@ public final class MyResult {
 		return partyTitre;
 	}
 	
+	public ArrayList<String> getPartyDate(){
+		return partyDate;
+	}
 }

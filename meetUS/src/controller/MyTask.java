@@ -23,6 +23,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	Context context;
 	public String partyTitre;
 	public String partyLieu;
+	public String partyDate;
 	Connexion co = new Connexion();
 	public ListView liste; 
 	public MyResult toto;
@@ -33,7 +34,8 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	public String url = "http://meetus.noip.me/meetus/connexion.php";
 
 	public ArrayList<String> titreParty = new ArrayList<String>();
-	public ArrayList<String> text = new ArrayList<String>();
+	public ArrayList<String> lieuParty = new ArrayList<String>();
+	public ArrayList<String> dateParty = new ArrayList<String>();
 	public ArrayList<Bitmap> image = new ArrayList<Bitmap>() ;
 	
 	
@@ -51,12 +53,14 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 				json_data = jArray.getJSONObject(i);
 				partyTitre = json_data.getString("PARTY_TITRE");
 				partyLieu = json_data.getString("VILLE_LIEU");
+				partyDate = json_data.getString("DATE_PARTY");
 				srcPic = "http://meetus.noip.me/meetus/media/images/image1.png";
 					
 					is = (InputStream) new URL(srcPic).getContent();
 					bm = BitmapFactory.decodeStream(is);
 					titreParty.add(""+partyTitre);
-					text.add(""+partyLieu);
+					lieuParty.add(""+partyLieu);
+					dateParty.add(""+partyDate);
 					image.add(bm);
 				 	
 					toto = something();
@@ -73,7 +77,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	protected void onPostExecute(MyResult result){	
 		
 		
-		MyAdapterList adapter = new MyAdapterList(context,toto.getPartyTitre(), toto.getText(), toto.getImages());
+		MyAdapterList adapter = new MyAdapterList(context,toto.getPartyTitre(), toto.getPartyLieu(), toto.getPartyDate(), toto.getImages());
 		
 
 		Log.e("eco", ""+ liste.getId());
@@ -90,10 +94,11 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	
 	public MyResult something(){
 		ArrayList<String> titrePartyy = titreParty;
-		ArrayList<String> textt = text;
+		ArrayList<String> lieuPartyy = lieuParty;
+		ArrayList<String> datePartyy = dateParty;
 		ArrayList<Bitmap> imagee = image;
 		
-		return new MyResult(titrePartyy ,textt, imagee);
+		return new MyResult(titrePartyy , lieuPartyy, datePartyy, imagee);
 	}
 
 }
