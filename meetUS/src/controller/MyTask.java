@@ -2,18 +2,23 @@ package controller;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-import vue.MyAdapterList;
 
+
+
+import vue.MyAdapterList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -50,10 +55,18 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 		try{
 			JSONArray jArray = co.getObjFromUrlTest(url, "BIJOU", "Chrislet");
 			for(int i=0;i<jArray.length();i++){
+				
 				json_data = jArray.getJSONObject(i);
 				partyTitre = json_data.getString("PARTY_TITRE");
 				partyLieu = json_data.getString("VILLE_LIEU");
-				partyDate = json_data.getString("DATE_PARTY");
+				String date = json_data.getString("DATE_PARTY");
+				
+				SimpleDateFormat dateTransform = new SimpleDateFormat("yyyy-MM-dd");
+				Date maDate = dateTransform.parse(date);
+				
+				
+				partyDate = maDate.toLocaleString();
+				
 				srcPic = "http://meetus.noip.me/meetus/media/images/image1.png";
 					
 					is = (InputStream) new URL(srcPic).getContent();

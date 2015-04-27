@@ -27,6 +27,8 @@
         </activity>
         <activity android:name="vue.MainVue" > 
         </activity>
+        <activity android:name="vue.AccueilVue"></activity>
+        <activity android:name="vue.CreateParty"></activity>
     </application>
 
 </manifest>

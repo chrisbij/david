@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainVue extends MainActivity {
+public class MainVue extends AccueilVue {
 
 	
 	public String srcPic;

@@ -4,8 +4,9 @@ import org.json.JSONObject;
 
 
 
-import vue.MainVue;
 
+import vue.AccueilVue;
+import vue.MainVue;
 import controller.Connexion;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accueil);
+        setContentView(R.layout.connexion);
         
         
         login = (EditText)findViewById(R.id.login);
@@ -64,9 +65,9 @@ public class MainActivity extends Activity {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									Toast.makeText(MainActivity.this, "Bonjour Monsieur", Toast.LENGTH_SHORT).show();
+									/*Toast.makeText(MainActivity.this, "Bonjour Monsieur", Toast.LENGTH_SHORT).show();*/
 									
-									Intent intent = new Intent(getApplicationContext(), MainVue.class);
+									Intent intent = new Intent(getApplicationContext(), AccueilVue.class);
 									
 									startActivity(intent);
 								}

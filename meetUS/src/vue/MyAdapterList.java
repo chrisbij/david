@@ -8,10 +8,10 @@ import com.example.meetus.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.provider.Telephony.Mms.Part;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -75,10 +75,10 @@ public class MyAdapterList extends BaseAdapter{
 		dateParty = (TextView) row.findViewById(R.id.TextView01);
 		Log.e("test", "bonjour");
 		img = (ImageView) row.findViewById(R.id.list_image);
-		
-		lieuParty.setText("à "+partyLieuResult.get(position));
+
 		partyTitre.setText(titrePartyResult.get(position));
-		dateParty.setText("Le "+partyDateResult);
+		lieuParty.setText("à "+partyLieuResult.get(position));
+		dateParty.setText("Le "+partyDateResult.get(position));
 		img.setImageBitmap(image.get(position));
 		
 		return row;

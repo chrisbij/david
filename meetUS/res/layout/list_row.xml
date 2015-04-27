@@ -7,7 +7,7 @@
     
     <LinearLayout android:id="@+id/picContent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dip"
         android:padding="2dp"
         android:layout_alignParentLeft="true"
         android:background="@drawable/image_bg">
@@ -26,22 +26,29 @@
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/TextView01"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/objet"
-        android:layout_below="@+id/objet"
-        android:hint=" " />
+        android:layout_below="@+id/objet" />
 
     <TextView
         android:id="@+id/objet"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:layout_alignBottom="@+id/picContent"
+        android:layout_alignRight="@+id/TextView01"
+        android:text="Info" />
+
 
 </RelativeLayout>
