@@ -5,7 +5,7 @@ package vue;
 import java.util.ArrayList;
 
 
-import com.example.meetus.MainActivity;
+
 import com.example.meetus.R;
 
 import controller.MyTask;
@@ -17,10 +17,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class MainVue extends AccueilVue {
 
@@ -30,7 +30,7 @@ public class MainVue extends AccueilVue {
 	public Bitmap bm; 
 	public Drawable dra;
 	ImageView picProfil;
-	TextView datePick;
+	Button datePick;
 	public int annee;
 	public ListView list;
 	public int jour;
@@ -44,7 +44,7 @@ public class MainVue extends AccueilVue {
 		
 		setContentView(R.layout.activity_main);
 		
-		datePick = (TextView)findViewById(R.id.dteSortie);
+		datePick = (Button)findViewById(R.id.dteSortie);
 		datePick.setOnClickListener(choixJour);
 		test = (ImageView)findViewById(R.id.objet);
 		list = (ListView)findViewById(R.id.lvListe);

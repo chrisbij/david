@@ -8,7 +8,6 @@ import com.example.meetus.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.provider.Telephony.Mms.Part;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
