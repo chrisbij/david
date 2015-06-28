@@ -15,6 +15,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 
 import android.graphics.Bitmap;
@@ -27,6 +28,8 @@ public class Connexion {
 	private InputStream is = null;
 	private JSONArray jArray = null;
 	private String result ="";
+	
+	public Boolean go = false;
 	
 	public String src = "http://meetus.noip.me/meetus/media/images/image2.png";
 	
@@ -53,31 +56,47 @@ public class Connexion {
 			HttpClient client = new  DefaultHttpClient();
 			HttpPost post = new HttpPost(url);
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			
+			HttpConnectionParams.setConnectionTimeout(client.getParams(), 5000);
+			HttpConnectionParams.setSoTimeout(client.getParams(), 5000);
+			
 			HttpResponse response = client.execute(post);
 			HttpEntity entity = response.getEntity();
 			is = entity.getContent();
+			
+			go = true;
+			
 		}catch(Exception e){
 			Log.e("connect", "Erreur lors de la connection : "+e.toString());
+			
+			go = false;
 		}
 		
-		try{
-			BufferedReader read = new BufferedReader(new InputStreamReader(is, "ISO-8859-1"));
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while((line=read.readLine()) != null){
-				sb.append(line);
+		
+		if (go!=false){ 
+			try{
+				BufferedReader read = new BufferedReader(new InputStreamReader(is, "ISO-8859-1"));
+				StringBuilder sb = new StringBuilder();
+				String line;
+				while((line=read.readLine()) != null){
+					sb.append(line);
+				}
+				is.close();
+				result = sb.toString();
+				Log.e("preResult", result);
+			}catch(Exception e){
+				Log.e("Recept", "Erreur lors de la reception : "+e.toString());
+				go = false;
 			}
-			is.close();
-			result = sb.toString();
-			Log.e("preResult", result);
-		}catch(Exception e){
-			Log.e("Recept", "Erreur lors de la reception : "+e.toString());
 		}
 		
-		try{
-			jArray = new JSONArray(result);
-		}catch(Exception e){
-			Log.e("test", e.toString());
+		
+		if (go!=false){ 
+			try{
+				jArray = new JSONArray(result);
+			}catch(Exception e){
+				Log.e("test", e.toString());
+			}
 		}
 		
 		return jArray;

@@ -42,13 +42,13 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1" />
 
-    <Button
-        android:id="@+id/datePickerButton"
+  <!--    <Button
+        android:id="@+id/infoButton"
         android:layout_width="wrap_content"
         android:layout_height="40dip"
         android:layout_alignBottom="@+id/picContent"
         android:layout_alignRight="@+id/TextView01"
-        android:text="Info" />
+        android:text="Info" />-->
 
 
 </RelativeLayout>

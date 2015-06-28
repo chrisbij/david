@@ -1,5 +1,6 @@
 package vue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,10 @@ public class AccueilVue extends MainActivity {
 	
 	public Button createParty;
 	public Button accessParty;
+	
+	final String ExtraContext= "contexte de l'appli";
+	
+	final Context context = this;
 	
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class AccueilVue extends MainActivity {
 				public void run() {
 					// TODO Auto-generated method stub
 				
+					
+						
 					try{
 						
 							runOnUiThread(new Runnable() {
@@ -51,7 +58,7 @@ public class AccueilVue extends MainActivity {
 								@Override
 								public void run() {
 									Intent intent = new Intent(getApplicationContext(), MainVue.class);
-									
+								
 									startActivity(intent);
 								}
 							});

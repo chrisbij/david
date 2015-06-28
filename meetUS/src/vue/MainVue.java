@@ -15,6 +15,7 @@ import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,8 +30,10 @@ public class MainVue extends AccueilVue {
 	ImageView test;
 	public Bitmap bm; 
 	public Drawable dra;
+	public MyTask asyncTask;
 	ImageView picProfil;
 	Button datePick;
+	Button infoParty;
 	public int annee;
 	public ListView list;
 	public int jour;
@@ -46,12 +49,19 @@ public class MainVue extends AccueilVue {
 		
 		datePick = (Button)findViewById(R.id.dteSortie);
 		datePick.setOnClickListener(choixJour);
+		
+		
+		
 		test = (ImageView)findViewById(R.id.objet);
 		list = (ListView)findViewById(R.id.lvListe);
 			
 		picProfil = (ImageView)findViewById(R.id.list_image);
 	
-		new MyTask(MainVue.this, list).execute("");
+		asyncTask = new MyTask(context, list);
+		
+		asyncTask.execute("");
+		
+		
 		
 	}
 	
@@ -65,6 +75,12 @@ public class MainVue extends AccueilVue {
 			showDialog(0);
 		}
 	};
+	
+	
+	
+	
+	
+	
 	
 	public Dialog onCreateDialog(int id){
 		switch (id) {

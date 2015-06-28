@@ -3,6 +3,7 @@ package vue;
 
 
 import java.util.ArrayList;
+import android.content.Intent;
 
 import com.example.meetus.R;
 
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class MyAdapterList extends BaseAdapter{
 	TextView partyTitre;
 	TextView dateParty;
 	ImageView img;
+//	public Button infoParty;
 	
 	
 	
@@ -72,6 +75,10 @@ public class MyAdapterList extends BaseAdapter{
 		partyTitre = (TextView) row.findViewById(R.id.textView1);
 		lieuParty = (TextView) row.findViewById(R.id.objet);
 		dateParty = (TextView) row.findViewById(R.id.TextView01);
+	//	infoParty = (Button)row.findViewById(R.id.infoButton);
+		
+	//	infoParty.setOnClickListener(affichInfo);
+		
 		Log.e("test", "bonjour");
 		img = (ImageView) row.findViewById(R.id.list_image);
 
@@ -82,5 +89,20 @@ public class MyAdapterList extends BaseAdapter{
 		
 		return row;
 	}
+	
+	
+	
+	public OnClickListener affichInfo = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(context, InfoPary.class);
+			
+			context.startActivity(intent);
+		
+		}
+	};
+	
 
 }

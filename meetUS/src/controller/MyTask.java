@@ -13,13 +13,17 @@ import org.json.JSONObject;
 
 
 
+import vue.MainVue;
 import vue.MyAdapterList;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,42 +52,59 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 		context = a;
 		liste = view;
 	}
+	
+	
+	
+	
+	protected void onPreExecute(){
+		
+	}
+	
+	
+	
 
+	@SuppressLint("SimpleDateFormat")
+	@SuppressWarnings("deprecation")
 	@Override
 	protected MyResult doInBackground(String... params) {
 		// TODO Auto-generated method stub
+		
+		
 		try{
 			JSONArray jArray = co.getObjFromUrlTest(url, "BIJOU", "Chrislet");
-			for(int i=0;i<jArray.length();i++){
-				
-				json_data = jArray.getJSONObject(i);
-				partyTitre = json_data.getString("PARTY_TITRE");
-				partyLieu = json_data.getString("VILLE_LIEU");
-				String date = json_data.getString("DATE_PARTY");
-				
-				SimpleDateFormat dateTransform = new SimpleDateFormat("yyyy-MM-dd");
-				Date maDate = dateTransform.parse(date);
-				
-				
-				partyDate = maDate.toLocaleString();
-				
-				srcPic = "http://meetus.noip.me/meetus/media/images/image1.png";
+			if(co.go == false){
+			super.cancel(true);
+			}else{
+				for(int i=0;i<jArray.length();i++){
 					
-					is = (InputStream) new URL(srcPic).getContent();
-					bm = BitmapFactory.decodeStream(is);
-					titreParty.add(""+partyTitre);
-					lieuParty.add(""+partyLieu);
-					dateParty.add(""+partyDate);
-					image.add(bm);
-				 	
-					toto = something();
-					}
-			
+					json_data = jArray.getJSONObject(i);
+					partyTitre = json_data.getString("PARTY_TITRE");
+					partyLieu = json_data.getString("VILLE_LIEU");
+					String date = json_data.getString("DATE_PARTY");
+					
+					SimpleDateFormat dateTransform = new SimpleDateFormat("yyyy-MM-dd");
+					Date maDate = dateTransform.parse(date);
+					
+					
+					partyDate = maDate.toLocaleString();
+					
+					srcPic = "http://meetus.noip.me/meetus/media/images/image1.png";
+						
+						is = (InputStream) new URL(srcPic).getContent();
+						bm = BitmapFactory.decodeStream(is);
+						titreParty.add(""+partyTitre);
+						lieuParty.add(""+partyLieu);
+						dateParty.add(""+partyDate);
+						image.add(bm);
+					 	
+						toto = something();
+						}
+			}
 		}catch(Exception e){
 			Log.e("img", e.toString());
 		}
 		
-		
+	//	}
 		return toto ;
 	}
 	
@@ -97,10 +118,21 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 		
 		
 		liste.setAdapter(adapter);
-		Toast titi =Toast.makeText(context, "Salut l'artiste", Toast.LENGTH_SHORT);
 		
-		titi.show();
-		
+		liste.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Log.e("conio", "msg");
+				
+				String s = "bonjour";
+				
+				Toast msg = Toast.makeText(context, s, Toast.LENGTH_LONG);
+				msg.show();
+			}
+		});
 		
 	}
 	
@@ -113,5 +145,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 		
 		return new MyResult(titrePartyy , lieuPartyy, datePartyy, imagee);
 	}
+	
+	
 
 }
