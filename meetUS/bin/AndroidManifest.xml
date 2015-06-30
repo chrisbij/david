@@ -25,7 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="vue.MainVue" > 
+        <activity android:name="vue.MainVue"
+            android:configChanges="keyboardHidden|orientation|screenSize" 
+           > 
         </activity>
         <activity android:name="vue.AccueilVue"></activity>
         <activity android:name="vue.CreateParty"></activity>

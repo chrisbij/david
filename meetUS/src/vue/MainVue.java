@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 
 
+
 import com.example.meetus.R;
 
 import controller.MyTask;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -77,7 +77,11 @@ public class MainVue extends AccueilVue {
 	};
 	
 	
-	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	  super.onConfigurationChanged(newConfig);
+	  setContentView(R.layout.activity_main);
+	}
 	
 	
 	

@@ -11,9 +11,6 @@ import org.json.JSONObject;
 
 
 
-
-
-import vue.MainVue;
 import vue.MyAdapterList;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -55,13 +52,6 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	
 	
 	
-	
-	protected void onPreExecute(){
-		
-	}
-	
-	
-	
 
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("deprecation")
@@ -74,6 +64,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 			JSONArray jArray = co.getObjFromUrlTest(url, "BIJOU", "Chrislet");
 			if(co.go == false){
 			super.cancel(true);
+			
 			}else{
 				for(int i=0;i<jArray.length();i++){
 					
@@ -104,7 +95,6 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 			Log.e("img", e.toString());
 		}
 		
-	//	}
 		return toto ;
 	}
 	
@@ -134,6 +124,14 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 			}
 		});
 		
+	}
+	
+	protected void onCancelled(){
+
+		String errorConnect = "Erreur lors de la connexion. Réessayer.";
+		
+		Toast msg = Toast.makeText(context, errorConnect, Toast.LENGTH_LONG);
+		msg.show();
 	}
 	
 	
