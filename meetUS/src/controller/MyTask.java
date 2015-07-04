@@ -11,9 +11,11 @@ import org.json.JSONObject;
 
 
 
+import vue.InfoPary;
 import vue.MyAdapterList;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -30,6 +32,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	public String partyTitre;
 	public String partyLieu;
 	public String partyDate;
+	public String partyId;
 	Connexion co = new Connexion();
 	public ListView liste; 
 	public MyResult toto;
@@ -39,6 +42,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	public String srcPic;
 	public String url = "http://meetus.noip.me/meetus/connexion.php";
 
+	public ArrayList<String> idParty = new ArrayList<String>();
 	public ArrayList<String> titreParty = new ArrayList<String>();
 	public ArrayList<String> lieuParty = new ArrayList<String>();
 	public ArrayList<String> dateParty = new ArrayList<String>();
@@ -69,6 +73,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 				for(int i=0;i<jArray.length();i++){
 					
 					json_data = jArray.getJSONObject(i);
+					partyId = json_data.getString("PARTY_ID");
 					partyTitre = json_data.getString("PARTY_TITRE");
 					partyLieu = json_data.getString("VILLE_LIEU");
 					String date = json_data.getString("DATE_PARTY");
@@ -83,6 +88,8 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 						
 						is = (InputStream) new URL(srcPic).getContent();
 						bm = BitmapFactory.decodeStream(is);
+						
+						idParty.add(""+partyId);
 						titreParty.add(""+partyTitre);
 						lieuParty.add(""+partyLieu);
 						dateParty.add(""+partyDate);
@@ -101,7 +108,7 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	protected void onPostExecute(MyResult result){	
 		
 		
-		MyAdapterList adapter = new MyAdapterList(context,toto.getPartyTitre(), toto.getPartyLieu(), toto.getPartyDate(), toto.getImages());
+		MyAdapterList adapter = new MyAdapterList(context,toto.getPartyID(), toto.getPartyTitre(), toto.getPartyLieu(), toto.getPartyDate(), toto.getImages());
 		
 
 		Log.e("eco", ""+ liste.getId());
@@ -117,10 +124,15 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 				// TODO Auto-generated method stub
 				Log.e("conio", "msg");
 				
-				String s = "bonjour";
+				final String idParty = String.valueOf(liste.getItemAtPosition(arg2));
 				
-				Toast msg = Toast.makeText(context, s, Toast.LENGTH_LONG);
-				msg.show();
+				/*Toast msg = Toast.makeText(context, s, Toast.LENGTH_LONG);
+				msg.show();*/
+				
+				Intent intent = new Intent(context, InfoPary.class);
+				intent.putExtra("ID_PARTY", idParty);
+				context.startActivity(intent);
+				
 			}
 		});
 		
@@ -136,12 +148,13 @@ public class MyTask extends AsyncTask<String, Void, MyResult> {
 	
 	
 	public MyResult something(){
-		ArrayList<String> titrePartyy = titreParty;
-		ArrayList<String> lieuPartyy = lieuParty;
-		ArrayList<String> datePartyy = dateParty;
-		ArrayList<Bitmap> imagee = image;
+		ArrayList<String> idPartyList = idParty;
+		ArrayList<String> titrePartyList = titreParty;
+		ArrayList<String> lieuPartyList = lieuParty;
+		ArrayList<String> datePartyList = dateParty;
+		ArrayList<Bitmap> imageList = image;
 		
-		return new MyResult(titrePartyy , lieuPartyy, datePartyy, imagee);
+		return new MyResult(idPartyList, titrePartyList , lieuPartyList, datePartyList, imageList);
 	}
 	
 	

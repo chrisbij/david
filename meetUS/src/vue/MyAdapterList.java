@@ -21,11 +21,14 @@ import android.widget.TextView;
 public class MyAdapterList extends BaseAdapter{
 	
 	Context context;
+	ArrayList<String> idPartyResult = new ArrayList<String>();
 	ArrayList<String> titrePartyResult = new ArrayList<String>();
 	ArrayList<String> partyLieuResult = new ArrayList<String>();
 	ArrayList<String> partyDateResult = new ArrayList<String>();
 	ArrayList<Bitmap> image = new ArrayList<Bitmap>();
-	TextView lieuParty;
+	
+	public TextView idParty;
+	public TextView lieuParty;
 	TextView partyTitre;
 	TextView dateParty;
 	ImageView img;
@@ -33,7 +36,8 @@ public class MyAdapterList extends BaseAdapter{
 	
 	
 	
-	public MyAdapterList(Context a, ArrayList<String> titrePartyList, ArrayList<String> partyLieu, ArrayList<String> partyDate, ArrayList<Bitmap> imgList){
+	public MyAdapterList(Context a, ArrayList<String> idPartyList, ArrayList<String> titrePartyList, ArrayList<String> partyLieu, ArrayList<String> partyDate, ArrayList<Bitmap> imgList){
+		idPartyResult = idPartyList;
 		titrePartyResult = titrePartyList;
 		partyLieuResult = partyLieu;
 		partyDateResult = partyDate;
@@ -51,7 +55,7 @@ public class MyAdapterList extends BaseAdapter{
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		return idPartyResult.get(position);
 	}
 
 	@Override
@@ -72,6 +76,7 @@ public class MyAdapterList extends BaseAdapter{
 		
 		row = inflater.inflate(R.layout.list_row, parent, false);
 		
+		idParty = (TextView) row.findViewById(R.id.idParty);
 		partyTitre = (TextView) row.findViewById(R.id.textView1);
 		lieuParty = (TextView) row.findViewById(R.id.objet);
 		dateParty = (TextView) row.findViewById(R.id.TextView01);
@@ -82,6 +87,7 @@ public class MyAdapterList extends BaseAdapter{
 		Log.e("test", "bonjour");
 		img = (ImageView) row.findViewById(R.id.list_image);
 
+		idParty.setText(idPartyResult.get(position));
 		partyTitre.setText(titrePartyResult.get(position));
 		lieuParty.setText("à "+partyLieuResult.get(position));
 		dateParty.setText("Le "+partyDateResult.get(position));

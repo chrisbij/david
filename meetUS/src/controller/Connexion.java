@@ -40,10 +40,18 @@ public class Connexion {
 	}
 	
 	
-	public JSONArray getObjFromUrlTest(String url, String nom, String prenom){
+	public JSONArray getObjFromUrlTest(String url, String IDparty, String prenom){
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("nom", nom));
+		nameValuePairs.add(new BasicNameValuePair("IdParty", IDparty));
 		nameValuePairs.add(new BasicNameValuePair("prenom", prenom));
+		
+		return getObjFromUrl(url, nameValuePairs);
+	}
+	
+	
+	public JSONArray getPartyFromUrl(String url, String IDparty){
+		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("IdParty", IDparty));
 		
 		return getObjFromUrl(url, nameValuePairs);
 	}
@@ -57,8 +65,8 @@ public class Connexion {
 			HttpPost post = new HttpPost(url);
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			
-			HttpConnectionParams.setConnectionTimeout(client.getParams(), 5000);
-			HttpConnectionParams.setSoTimeout(client.getParams(), 5000);
+			HttpConnectionParams.setConnectionTimeout(client.getParams(), 8000);
+			HttpConnectionParams.setSoTimeout(client.getParams(), 8000);
 			
 			HttpResponse response = client.execute(post);
 			HttpEntity entity = response.getEntity();
