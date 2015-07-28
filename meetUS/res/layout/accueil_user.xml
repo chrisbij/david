@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="139dp"
-        android:text="Voir les sorties" />
+        android:text="EN GROUPE" />
 
     <Button
         android:id="@+id/createParty"
@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/accessParty"
         android:layout_centerVertical="true"
-        android:text="Créer une sortie" />
+        android:text="A DEUX" />
 
 </RelativeLayout>
